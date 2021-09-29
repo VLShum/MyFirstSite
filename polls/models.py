@@ -40,6 +40,32 @@ class Product(models.Model):
 
 class Notebook(Product):
 
+    diagonal = models.CharField(max_length= 255, verbose_name= 'Диагональ')
+    display = models.CharField(max_length=255, verbose_name='Дисплей')
+    processor = models.CharField(max_length=255, verbose_name='Процессор')
+    ram = models.CharField(max_length=255, verbose_name='Оперативная память')
+    no_charge_time = models.CharField(max_length=255, verbose_name='Время без подзарядки')
+
+    def __str__(self):
+        return f'{self.category.name} : {self.title}'
+
+class Smartphones(Product):
+    diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
+    display = models.CharField(max_length=255, verbose_name='Дисплей')
+    resolution = models.CharField(max_length=255, verbose_name='Разрешение экрана')
+    ram = models.CharField(max_length=255, verbose_name='Оперативная память')
+    camera = models.CharField(max_length=255, verbose_name='Основная камера')
+    front_cam = models.CharField(max_length=255, verbose_name='Фронтальная камера')
+    accum = models.CharField(max_length=255, verbose_name='Объем батареи')
+
+    def __str__(self):
+        return f'{self.category.name} : {self.title}'
+
+
+
+
+
+
 class CartProduct(models.Model):
 
     user = models.ForeignKey('Customer', verbose_name= 'Покупатель', on_delete= models.CASCADE)
