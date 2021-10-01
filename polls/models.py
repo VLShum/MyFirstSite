@@ -49,7 +49,7 @@ class Notebook(Product):
     def __str__(self):
         return f'{self.category.name} : {self.title}'
 
-class Smartphones(Product):
+class Smartphone(Product):
     diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
     display = models.CharField(max_length=255, verbose_name='Дисплей')
     resolution = models.CharField(max_length=255, verbose_name='Разрешение экрана')
