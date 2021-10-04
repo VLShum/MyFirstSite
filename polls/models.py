@@ -62,10 +62,6 @@ class Smartphone(Product):
         return f'{self.category.name} : {self.title}'
 
 
-
-
-
-
 class CartProduct(models.Model):
 
     user = models.ForeignKey('Customer', verbose_name= 'Покупатель', on_delete= models.CASCADE)
@@ -78,6 +74,7 @@ class CartProduct(models.Model):
 
     def __str__(self):
         return 'Продукт: {}'.format(self.product.title)
+
 
 class Cart(models.Model):
 
@@ -106,6 +103,15 @@ class Customer(models.Model):
 #
 #      def __str__(self):
 #          return 'Характеристики: {}'.format(self.name)
+
+# class Some(models.Model):
+#
+#     image = models.ImageField()
+#
+#     def __str__(self):
+#         return str(self.id)
+
+
 
 
 

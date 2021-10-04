@@ -16,23 +16,23 @@ class NotebookAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-class NBCategoryChoiceField(forms.ModelChoiceField):
-
+class SmartphonesCategoryChoiceField(forms.ModelChoiceField):
     pass
 
-class NBAdmin(admin.ModelAdmin):
+class SmartphonesAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
 
         if db_field.name == 'category':
-            return NBCategoryChoiceField(Category.objects.filter(slug= 'notebooks'))
+            return SmartphonesCategoryChoiceField(Category.objects.filter(slug= 'smartphones'))
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 admin.site.register(Category)
 admin.site.register(Notebook, NotebookAdmin)
-admin.site.register(Smartphone)
+admin.site.register(Smartphone, SmartphonesAdmin)
 admin.site.register(Cart)
 admin.site.register(Customer)
 admin.site.register(CartProduct)
+# admin.site.register(Some)
 
 
