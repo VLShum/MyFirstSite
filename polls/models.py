@@ -2,18 +2,14 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from django.urls import reverse
+
 User = get_user_model()
 
-#-----------------
-# models:
-# 1_category
-# 2_product
-# 3_cartproduct
-# 4_cart
-# 5_order
-#-----------------
-# 6_customer
-# 7_specification
+def get_product_url(obj, url_pattern_name):
+    ct_model = obj.__class__._meta.model_name
+    return reverse(url_pattern_name, kwargs= {'ct_model': ct_model,
+                                              'slug': obj.slug})
 
 class Category(models.Model):
 
@@ -49,6 +45,9 @@ class Notebook(Product):
     def __str__(self):
         return f'{self.category.name} : {self.title}'
 
+    def get_absolute_url(self):
+        return get_product_url(self, 'products')
+
 class Smartphone(Product):
     diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
     display = models.CharField(max_length=255, verbose_name='Дисплей')
@@ -60,6 +59,10 @@ class Smartphone(Product):
 
     def __str__(self):
         return f'{self.category.name} : {self.title}'
+
+    def get_absolute_url(self):
+        return get_product_url(self, 'products')
+
 
 
 class CartProduct(models.Model):
@@ -103,13 +106,6 @@ class Customer(models.Model):
 #
 #      def __str__(self):
 #          return 'Характеристики: {}'.format(self.name)
-
-# class Some(models.Model):
-#
-#     image = models.ImageField()
-#
-#     def __str__(self):
-#         return str(self.id)
 
 
 
